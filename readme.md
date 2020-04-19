@@ -10,5 +10,5 @@ This is a project that relies on getting information from a CSV file exported vi
 	*	obfuscated, but field names correct
 * `forms` subdirectory - information about forms
 * `sql` subdirectory - queries with notes
-* `tables` subdirectory - infomr
+* `tables` subdirectory - information about tables 
 * `vba` subdirectory - copy of modules in the datbase
