@@ -11,7 +11,8 @@ WHERE 1 = 1
 
 /* This inserts into PD Clinicans table if not already there 
 
-name: qapp_NewPDClinicianIfNotExist
+name:   qapp_NewPDClinicianIfNotExist
+status: Hidden
 
 This is executed through listUpdate() sub
 meant for when the checklist for clinicans is updated

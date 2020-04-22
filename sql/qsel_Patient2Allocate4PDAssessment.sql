@@ -9,7 +9,8 @@ WHERE (((main.AllocatedHCPName)="Allocation (HLT) PD Waiting list"))
 /* Select patients awaiting allocation
 
 
-name: qsel_Patient2Allocate4PDAssessment
+name:   qsel_Patient2Allocate4PDAssessment
+status: Hidden
 
 Used in subreport rsub_Patient4DPAssessmentAllocation:
 

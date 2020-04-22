@@ -8,7 +8,8 @@ UPDATE tbl_ConsultantCaseload
 
 /* Updates transitory  Consultant Caseload subsequent to edition of the persistent Patient table
 
-name: qupd_ConsCaseload_isRealCons
+name:   qupd_ConsCaseload_isRealCons
+status: Hidden
 
 Update after closing the consultant editing form. It should update all checkboxes in 
 Consultant Caseload upon closing the form. In addition this should be run right after importing

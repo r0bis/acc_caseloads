@@ -1,13 +1,13 @@
 SELECT DISTINCT 
-    `ClientName`, 
-    `ClientID`, 
-    `ReferralDateTime`, 
-    `AllocatedHCPStartDate`, 
-    (`AllocatedHCPStartDate` - `ReferralDateTime`  ) AS Days, 
-    main.`AllocatedHCPName`
+    ClientName, 
+    ClientID, 
+    ReferralDateTime, 
+    AllocatedHCPStartDate, 
+    (AllocatedHCPStartDate - ReferralDateTime  ) AS Days, 
+    main.AllocatedHCPName
 FROM main INNER JOIN tbl_TWListPD 
-    ON `main`.`AllocatedHCPName` = `tbl_TWListPD`.`AllocatedHCPName`
-ORDER BY (`AllocatedHCPStartDate` - `ReferralDateTime`  ) DESC
+    ON main.AllocatedHCPName = tbl_TWListPD.AllocatedHCPName
+ORDER BY (AllocatedHCPStartDate - ReferralDateTime  ) DESC
 ;
 
 

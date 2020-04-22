@@ -12,6 +12,10 @@ INSERT INTO tbl_Patient ( ClientID, ClientName, NHSNumber )
 
 /* Appends rows to tbl_patient if they did not have such patients before
 
+
+name:   qapp_Into_PatientIfNotExist
+status: Hidden
+
 Only trouble may be if there are patients with the same RiO number and different NHS number and name
 Theoretically it should not happen because presumably RiO ID is checked thoroughly
 

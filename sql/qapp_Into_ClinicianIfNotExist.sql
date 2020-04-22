@@ -11,9 +11,11 @@ FROM main
 
 /* Adds new clinicians to the persistent tbl_Clinician
 
-Name = qapp_Into_ClinicianIfNotExist
+name: qapp_Into_ClinicianIfNotExist
+status: Hidden
 
-We do not delete from tbl_Clinician - there are relatively few.
+
+We do not delete from tbl_Clinician - there are relatively few numbers.
 We select the ones we use for teams via checkboxes on Relevant_Clinician form
 
 

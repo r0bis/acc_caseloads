@@ -6,8 +6,8 @@ DROP TABLE tbl_ConsultantCaseload
 
 /*
 
-name: qddl_Drop_ConsultantCaseload
-is Hidden
+name:   qddl_Drop_ConsultantCaseload
+status: Hidden
 
 Called from VBA - to clear before populated from new import data.
 

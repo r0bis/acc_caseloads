@@ -19,7 +19,8 @@ WHERE ((1)=1)
 
 /* Updates Patient and PD TW-List Pairings table
 
-name: qapp_NewPatientPDTWLPairing
+name:   qapp_NewPatientPDTWLPairing
+status: Hidden
 
 Update executed from closing the clinican checkbox form.
 

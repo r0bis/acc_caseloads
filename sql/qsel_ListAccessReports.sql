@@ -13,8 +13,8 @@ ORDER BY MSysObjects.Name ASC,
 
 /* List REPORTS that are used in database 
 
-name = qsel_ListAccessReports
-
+name:   qsel_ListAccessReports
+status: Hidden
 
 
 Types of objects:

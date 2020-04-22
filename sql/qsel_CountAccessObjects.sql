@@ -13,8 +13,9 @@ ORDER BY  Count(*) DESC ,
 
 /* List database Objects by count descending 
 
-name = qsel_CountAccessObjects
-is Hidden
+name:   qsel_CountAccessObjects
+status: Hidden
+
 Service query
 
 We find the most used objects with their flags

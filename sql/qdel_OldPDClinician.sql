@@ -10,7 +10,8 @@ SELECT AllocatedHCPName FROM tbl_Clinician WHERE isRealPD = TRUE
 
 /* This updates PD clinican table tbl_ClinicianPD
 
-Name = qdel_OldPDClinician
+Name:   qdel_OldPDClinician
+status: Hidden
 
 Used on closing the Clinican Classifying Tickbox forms. The notes in Clinician tables (if any) 
 must be updated via manual editing the table 

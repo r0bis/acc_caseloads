@@ -9,8 +9,8 @@ FROM tbl_Clinician
 
 /* Gives overview how many clinicians have been checked
 
-name: qsel_CheckClinicianStatus 
-Hidden
+name:   qsel_CheckClinicianStatus 
+status: Hidden
 
 A service query that gives back results of check marks in clinican table
 if less than 1 checkmark in isRealPD, isTWLPD, isTWL

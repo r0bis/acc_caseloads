@@ -12,8 +12,9 @@ WHERE 1 = 1
 
 /* List TABLES that are used in database 
 
-name = qsel_ListAccessTables
-is Hidden
+name:   qsel_ListAccessTables
+status: Hidden
+
 Service query
 
 Flags: 0 - Local, 8 - also hidden, no flag - system

@@ -12,7 +12,8 @@ WHERE tbl_Clinician.isTWLPD = TRUE
 
 /* Recreates Patient and PD Treatment-Waiting List pairings from new data
 
-name: qmak_Into_PatientPDTWLPairing
+name:   qmak_Into_PatientPDTWLPairing
+status: Hidden
 
 Inner Join filters PD TWL clinicians. There are 2 TWL fields 
 in the clinicans table. 1st is for any TW-list and 

@@ -14,7 +14,9 @@ WHERE (((tbl_Clinician.isTWL)=True))
 
 /* Recreates Patient TWList pairing
 
-name: qmak_Into_PatientTWLPairing
+name:   qmak_Into_PatientTWLPairing
+status: Hidden
+
 
 Inner Join filters TWL clinicians. There are 2 TWL fields in 
 the clinicans table. 

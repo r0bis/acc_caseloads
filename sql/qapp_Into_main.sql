@@ -59,7 +59,8 @@ FROM main_new_import
 
 /* This makes main table compact 
 
-name: qapp_Into_main
+name:    qapp_Into_main
+status:  Hidden
 
 previously in VBA we have created the main table and the next 
 step will be to create indexes on fields

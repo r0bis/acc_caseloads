@@ -11,8 +11,8 @@ INSERT INTO tbl_ClinicianPD ( id, AllocatedHCPName)
 
 /* This updates PD clinican table tbl_Clinician
 
-Name = qapp_Into_ClinicianIfNotExist
-
+name:   qapp_Into_ClinicianIfNotExist
+status: Hidden
 
 Actually is in use - called upon closing Clinican Tick forms. The PD Clinician table
 tbl_ClinicianPD is used in some reports!

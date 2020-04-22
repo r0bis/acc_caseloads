@@ -10,7 +10,9 @@ WHERE (((main.AllocatedHCPName)="Assessment (HLT) PD Treatment"))
 /* Provides data for subreport PD patients undergoing assessment
 
 
-name: qsel_PatientsInPDAssessment
+name:   qsel_PatientsInPDAssessment
+status: Hidden
+
 
 Affected: 
 

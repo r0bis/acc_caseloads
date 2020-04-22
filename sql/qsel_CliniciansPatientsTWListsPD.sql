@@ -15,7 +15,8 @@ ORDER BY qAlloc001.ClientName
 
 /* One of most important queries used in subreport for PD Clinican Caseloads
 
-name: qsel_CliniciansPatientsTWListsPD
+name:   qsel_CliniciansPatientsTWListsPD
+status: Hidden, cplx
 
 It gives pairings of clinicians, their patients and TW Lists
 Therefore each clinican can know what TW-lists their patients are under

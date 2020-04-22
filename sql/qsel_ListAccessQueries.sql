@@ -12,8 +12,8 @@ WHERE 1 = 1
 
 /* List QUERIES that are used in database 
 
-name = qsel_ListAccessQueries
-
+name:   qsel_ListAccessQueries
+status: Hidden
 
 
 Types of objects:

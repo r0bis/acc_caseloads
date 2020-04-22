@@ -13,7 +13,8 @@ WHERE 1 = 1
 
 /* Updates PD service TW-Lists (a.k.a. Dummy clinicians)
 
-name: qapp_Into_TWListPDIfNotExist
+name:   qapp_Into_TWListPDIfNotExist
+status: Hidden
 
 
 This adds new TWList in case if a new one is created on RiO

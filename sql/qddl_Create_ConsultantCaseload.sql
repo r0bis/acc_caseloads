@@ -14,7 +14,8 @@ CREATE TABLE tbl_ConsultantCaseload
 
 /* Creates Consultant Caseload table anew.
 
-name: qddl_Create_ConsultantCaseload
+name:   qddl_Create_ConsultantCaseload
+status: Hidden
 
 This is a non persistent table
 

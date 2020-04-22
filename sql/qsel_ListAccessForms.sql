@@ -13,8 +13,8 @@ ORDER BY MSysObjects.Name ASC,
 
 /* List FORMS that are used in database 
 
-name = qsel_ListAccessForms
-
+name:   qsel_ListAccessForms
+status: Hidden
 
 
 Types of objects:

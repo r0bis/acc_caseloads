@@ -9,7 +9,8 @@ WHERE (((main.AllocatedHCPName)="Assessment (HLT) PD Waiting list"))
 
 /* This is for subreport for patients allocated and waiting for the first contact
 
-name: qsel_PatientWaiting4PDAssessment
+name:   qsel_PatientWaiting4PDAssessment
+status: Hidden
 
 Affected:
 

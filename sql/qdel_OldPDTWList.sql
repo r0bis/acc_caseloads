@@ -10,7 +10,8 @@ SELECT AllocatedHCPName FROM tbl_Clinician WHERE isTWLPD = TRUE
 
 /* This updates PD TWList table tbl_TWLPD
 
-Name = qdel_OldPDTWList
+Name:   qdel_OldPDTWList
+status: Hidden
 
 Used on closing the Clinican Classifying Tickbox forms. The notes in Clinician tables (if any) 
 must be updated via manual editing the table 

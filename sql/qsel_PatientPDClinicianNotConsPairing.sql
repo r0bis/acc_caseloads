@@ -13,9 +13,8 @@ FROM (tbl_Clinician INNER JOIN main
 
 /*
 
-name: qsel_PatientPDClinicianNotConsPairing
-not-Hidden
-cplx
+name:   qsel_PatientPDClinicianNotConsPairing
+status: Hidden, cplx
 
 
 This query is for the patient notes / RAG rating editing

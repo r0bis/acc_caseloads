@@ -6,8 +6,8 @@ DROP TABLE tbl_PatientTWLPairing
 
 /*
 
-name: qddl_Drop_PatientTWLPairing
-is Hidden
+name:   qddl_Drop_PatientTWLPairing
+status: Hidden
 
 Called from VBA - to clear before populated from new import data.
 

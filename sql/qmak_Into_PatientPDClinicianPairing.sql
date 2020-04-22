@@ -14,7 +14,8 @@ FROM tbl_Clinician INNER JOIN main
 
 /* Recreates PD Clinican and Patient pairing from new data
 
-name: qmak_Into_PatientPDClinicianPairing
+name:   qmak_Into_PatientPDClinicianPairing
+status: Hidden
 
 Inner Join filters PD clinicians - not RK, because he is on all PD cases.
 RK is filtered out by isCons FALSE flag 

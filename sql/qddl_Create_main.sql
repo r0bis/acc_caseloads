@@ -33,7 +33,8 @@ CREATE TABLE main
 
 /* Creates main table
 
-name: qddl_Create_main
+name:   qddl_Create_main
+status: Hidden
 
 Prepares table for insertion of new data.
 main is temporary table - it gets dropped and recreated prior to new data import

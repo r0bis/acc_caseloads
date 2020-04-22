@@ -1,15 +1,16 @@
 SELECT 
-    COUNT(`ClientID` ) AS CNT, 
-    `Practice_Name` AS Surgery
+    COUNT(ClientID ) AS CNT, 
+    Practice_Name AS Surgery
 FROM (
     SELECT DISTINCT  
-        `Practice_Name`, 
-        `ClientID` 
-    FROM `main` INNER JOIN `tbl_TWListPD` 
-    ON main.`AllocatedHCPName` = tbl_TWListPD.`AllocatedHCPName`
+        Practice_Name, 
+        ClientID 
+    FROM main INNER JOIN tbl_TWListPD 
+    ON main.AllocatedHCPName = tbl_TWListPD.AllocatedHCPName
     )  AS 'SQRY'
 GROUP BY Practice_Name
-ORDER BY COUNT(`ClientID` ) DESC;
+ORDER BY COUNT(ClientID ) DESC
+;
 
 
 

@@ -1,15 +1,15 @@
 SELECT DISTINCT 
-    `ClientName`, 
-    `ClientID`, 
-    `ReferralDateTime`, 
-    `AllocatedHCPStartDate`, 
-    (`AllocatedHCPStartDate` - `ReferralDateTime`  ) AS Days, 
-    main.`AllocatedHCPName`
+    ClientName, 
+    ClientID, 
+    ReferralDateTime, 
+    AllocatedHCPStartDate, 
+    (AllocatedHCPStartDate - ReferralDateTime  ) AS Days, 
+    main.AllocatedHCPName
 FROM main INNER JOIN tbl_ClinicianPD 
-    ON `main`.`AllocatedHCPName` = `tbl_ClinicianPD`.`AllocatedHCPName`
-WHERE main.`AllocatedHCPName` NOT IN
-    (SELECT `AllocatedHCPName` FROM `tbl_Clinician` WHERE `isCons` = TRUE)
-ORDER BY (`AllocatedHCPStartDate` - `ReferralDateTime`  ) DESC
+    ON main.AllocatedHCPName = tbl_ClinicianPD.AllocatedHCPName
+WHERE main.AllocatedHCPName NOT IN
+    (SELECT AllocatedHCPName FROM tbl_Clinician WHERE isCons = TRUE)
+ORDER BY (AllocatedHCPStartDate - ReferralDateTime  ) DESC
 ;
 
 

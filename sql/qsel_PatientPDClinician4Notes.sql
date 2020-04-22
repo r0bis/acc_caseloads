@@ -13,7 +13,8 @@ FROM tbl_Patient INNER JOIN tbl_PatientPDClinicianPairing
 
 /* provides data for 2 subreports
 
-name: qsel_PatientPDClinician4Notes
+name:   qsel_PatientPDClinician4Notes
+status: Hidden
 
 Used in 2 subreports: 
 

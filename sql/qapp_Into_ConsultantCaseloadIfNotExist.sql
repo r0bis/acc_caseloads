@@ -10,8 +10,10 @@ WHERE 1 = 1
   AND main.ClientName NOT IN (SELECT ClientName FROM tbl_ConsultantCaseload)
 ;
 
-/*
-Updates Consultant Caseload Table
+/* Updates Consultant Caseload Table
+
+name:   qapp_Into_ConsultantCaseloadIfNotExist
+status: Hidden
 
 This is going to be a table dropped and recreated every time data is imported.
 It will reflect the ones associated with the consultant of the service.

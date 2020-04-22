@@ -11,8 +11,8 @@ ORDER BY Count(main.ClientID) DESC
 
 /* List TW-List caseloads by count descending 
 
-name = qsel_CountDCaseloads
-not-Hidden
+name:   qsel_CountDCaseloads
+status: Hidden, old
 
 Overview of Treatment and Waiting List Caseloads
 With explanation of caseloads

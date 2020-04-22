@@ -8,3 +8,14 @@ FROM tbl_ClinicianPD
 ;
 
 
+/* 
+
+name: qAlloc001.sql
+status: Hidden
+
+One of two queries that serve as basis for another query.
+
+Puts together Clinicans and TWLs (Dummy clinicans) for sub-report.
+
+
+*/

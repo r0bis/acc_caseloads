@@ -14,8 +14,8 @@ GROUP BY TeamName
 /* This selects records for report 
 
 
-name: qsel_Patient2Allocate4PDAssessment
-
+name:   qsel_Patient2Allocate4PDAssessment
+status: Hidden
 
 
 We want to select How many PD patients are under PD team 

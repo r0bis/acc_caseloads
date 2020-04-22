@@ -11,8 +11,8 @@ WHERE tbl_Clinician.isCons = FALSE
 
 /* Record source for two subreports
 
-name: qsel_Clinicians4PatientsRPTMain
-
+name:   qsel_Clinicians4PatientsRPTMain
+status: Hidden
 
 The two affected subreports are:
 

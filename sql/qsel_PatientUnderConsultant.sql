@@ -9,7 +9,8 @@ WHERE tbl_Patient.isRealCons=True
 
 /*
 
-name: qsel_PatientUnderConsultant
+name:   qsel_PatientUnderConsultant
+status: Hidden
 
 This is because tbl_Patient is the main place for tracking patients who are
 actually under consultant. The other table for ConsultantCaseload is non-permanent
