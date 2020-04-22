@@ -1,6 +1,88 @@
 Option Compare Database
 Option Explicit
 
+Public Sub deleteAllFromSensitiveTables()
+'use WITH GREAT CARE
+' REMOVES ALL INFO FROM MOST TABLES
+
+Dim var As Variant
+Dim sql As String
+
+' lets export the persistent table information first
+
+Call persistentTBLxport
+
+
+
+For Each var In Array( _
+                        "main", _
+                        "Name AutoCorrect Log", _
+                        "tbl_Clinician", _
+                        "tbl_ClinicianPD", _
+                        "tbl_Patient", _
+                        "tbl_PatientPDClinicianPairing", _
+                        "tbl_PatientPDTWLPairing", _
+                        "tbl_PatientTWLPairing", _
+                        "tbl_ConsultantCaseload" _
+                        )
+
+    '"ptsUnderPDUnderRKnotOtherClin", "ptsUnderPDRK",
+    '"tbl_TWListPD" (WL-Names), "cnameID", "cases-test-2_ImportErrors",
+   sql = "DELETE * FROM [" & var & "];"
+   CurrentDb.Execute sql, dbFailOnError
+   Debug.Print "Deleted from " & var
+Next var
+
+End Sub
+
+Public Function exportTable(tName As String, Optional xSpec As String = "", Optional oPath As String = "") As Boolean
+
+' function for exporting persistent tables
+    exportTable = False
+    Dim oFile As String
+    
+    If Len(xSpec) = 0 Then
+        xSpec = "export_" & tName
+        'MsgBox "No import specification. Check your code!"
+        'Exit Function
+    End If
+    
+    If Len(oPath) = 0 Then
+        oPath = CurrentProject.Path & "\"
+    End If
+    
+    oFile = oPath & tName & ".csv"
+    
+    DoCmd.TransferText acExportDelim, xSpec, tName, oFile, True
+    exportTable = True
+    
+End Function
+Public Function importTable(tName As String, Optional xSpec As String = "", Optional iPath As String = "") As Boolean
+
+' function for importing a persistent tables
+    importTable = False
+    Dim iFile As String
+    
+    If Len(xSpec) = 0 Then
+        xSpec = "import_" & tName
+        'MsgBox "No import specification. Check your code!"
+        'Exit Function
+    End If
+    
+    
+    If Len(iPath) = 0 Then
+        iPath = CurrentProject.Path & "\"
+    End If
+    
+    iFile = iPath & tName & ".csv"
+    
+    DoCmd.TransferText acImportDelim, xSpec, tName, iFile, True
+    importTable = True
+    
+End Function
+
+
+
 Sub runthis()
 'just to run enumeration of controls
 Dim srvar As String
@@ -95,3 +177,5 @@ For Each tdf In db.TableDefs
    End If
 Next tdf
 End Sub
+
+

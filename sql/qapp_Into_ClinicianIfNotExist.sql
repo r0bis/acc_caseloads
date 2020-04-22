@@ -3,6 +3,7 @@ SELECT DISTINCT main.AllocatedHCPName
 FROM main
   WHERE 1 = 1
   AND main.AllocatedHCPName NOT IN (SELECT AllocatedHCPName FROM tbl_Clinician)
+  AND main.AllocatedHCPName IS NOT NULL
 ;
 
 

@@ -3,6 +3,7 @@ INSERT INTO tbl_Patient ( ClientID, ClientName, NHSNumber )
   FROM main
     WHERE 1 = 1
     AND main.ClientID NOT IN (SELECT ClientID FROM tbl_Patient)
+    AND main.ClientID IS NOT NULL
 ;
 
 

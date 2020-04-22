@@ -13,9 +13,9 @@ Public Function mainPrepRun()
   Dim testBool As Boolean, clinUpdOK As Boolean, patUpdOK As Boolean
   Dim PDTWLists As Integer, RealClinPD As Integer, TWLists As Integer, RealClin As Integer
 
-  ' csvPath = "Z:\data\caseload_data.csv" ' inital default path
+  'csvPath = "Z:\data\caseload_data.csv" ' inital default path
   csvPath = CurrentProject.Path & "\..\data\caseload_data.csv"
-  ' csvPath = CurrentProject.Path & "\acc_caseloads\data\caseload_data.csv"
+  'csvPath = CurrentProject.Path & "\acc_caseloads\data\caseload_data.csv"
   Debug.Print TypeName(csvPath)
   tpath = Left(csvPath, 3)
   testBool = FolderExists(tpath)
@@ -52,7 +52,7 @@ Public Function mainPrepRun()
           End If
                   
               
-          DoCmd.TransferText acImportDelim, "main_new_importing", "main_new_import", csvNewPath
+          DoCmd.TransferText acImportDelim, "main_new_importing_dtime", "main_new_import", csvNewPath
           ' set time import happened
           fCTime = GetCreateDate(csvNewPath)
           sql = "UPDATE tbl_dataDate SET dataDate = # " & Format(fCTime, "dd/mm/yyyy hh:mm:ss") & " # WHERE id = 1;"
@@ -61,7 +61,7 @@ Public Function mainPrepRun()
           ' MsgBox "Updated " & lngRowsAffectedDate & " DATE rows to " & fCTime
       Else
           ' create temporary table for new data import
-          DoCmd.TransferText acImportDelim, "main_new_importing", "main_new_import", csvPath
+          DoCmd.TransferText acImportDelim, "main_new_importing_dtime", "main_new_import", csvPath
           'DoCmd.RunSavedImportExport ("main_new_import")
           ' set time import happened
           fCTime = GetCreateDate(csvPath)
@@ -88,7 +88,7 @@ Public Function mainPrepRun()
   End If
       
   ' create temporary table for new data import
-  DoCmd.TransferText acImportDelim, "main_new_importing", "main_new_import", csvNewPath
+  DoCmd.TransferText acImportDelim, "main_new_importing_dtime", "main_new_import", csvNewPath
 
   ' set time the import happened - to be reset every time
   fCTime = GetCreateDate(csvNewPath)
@@ -169,7 +169,6 @@ Public Function mainPrepRun()
       'DoCmd.OpenForm "frm_RelevantClinicianSelection", , , , , acDialog
   End If
 
-
   Set rstClinStatus = checkClinicianStatus("qsel_CheckClinicianStatus")
   If rstClinStatus.RecordCount = 1 Then
       PDTWLists = rstClinStatus.Fields(0).Value
@@ -181,13 +180,14 @@ Public Function mainPrepRun()
       Exit Function
   End If
 
-
   MsgBox "PD Clinican status: checked " & RealClinPD & vbCrLf & _
   "PD TW-List status: checked " & PDTWLists & vbCrLf & _
   "General TW-List status: checked " & TWLists
 
   ' AND to delete and repopulate Treatment / Waiting List tables
   recreateTWLTables
+  ' AND updating newly imported ConsultantCaseload
+  listConsUpdate
 
   MsgBox "New data import process completed successfully."
 
@@ -284,6 +284,114 @@ Public Function FileExists(ByVal path_ As String) As Boolean
     FileExists = (Len(Dir(path_)) > 0)
 End Function
 
+
+Public Sub listConsUpdate()
+
+    Dim lngRowsAffected As Long
+    Dim db As Database
+    Set db = CurrentDb
+    
+     With db
+    
+    ' update tbl_ConsultantCaseload from tbl_Patients - after setting patient
+    ' status isRealCons in the form for Consultant Data editing
+    
+        db.Execute "qupd_ConsCaseload_isRealCons", dbFailOnError
+        lngRowsAffected = db.RecordsAffected
+        Debug.Print "Updated  " & lngRowsAffected & " in tbl_ConsultantCaseload"
+    ' how about where status is set to false?
+    ' OK the query sets status to whatever it is on Patient
+    
+    End With
+End Sub
+
+
+Public Sub listUpdate()
+' update relevant tables after clinican checks have been done
+
+    'each time you use CurrentDb it is a new instance!
+    ' that is why you better declare it and use then
+    Dim lngRowsAffected As Long
+    Dim db As Database
+    Set db = CurrentDb
+    
+    With db
+    
+    ' update tbl_ClinicianPD
+        db.Execute "qdel_OldPDClinician", dbFailOnError
+        lngRowsAffected = db.RecordsAffected
+        Debug.Print "Deleted  " & lngRowsAffected & " from tbl_ClinicianPD"
+        db.Execute "qapp_Into_ClinicianPDIfNotExist", dbFailOnError
+        lngRowsAffected = db.RecordsAffected
+        Debug.Print "Inserted  " & lngRowsAffected & " into tbl_ClinicianPD"
+    ' update tbl_TWListPD
+        db.Execute "qdel_OldPDTWList", dbFailOnError
+        lngRowsAffected = db.RecordsAffected
+        Debug.Print "Deleted  " & lngRowsAffected & " from tbl_TWLPD"
+        db.Execute "qapp_Into_TWListPDIfNotExist", dbFailOnError
+        lngRowsAffected = db.RecordsAffected
+        Debug.Print "Inserted  " & lngRowsAffected & " into tbl_TWListPD"
+    ' update tbl_PatientPDClinicianPairing
+        db.Execute "qdel_OldPatientPDClinicianPairing", dbFailOnError
+        lngRowsAffected = db.RecordsAffected
+        Debug.Print "Deleted  " & lngRowsAffected & " from tbl_PatientPDClinicianPairing"
+        db.Execute "qapp_NewPatientPDClinPairing", dbFailOnError
+        lngRowsAffected = db.RecordsAffected
+        Debug.Print "Inserted  " & lngRowsAffected & " into tbl_PatientPDClincianPairing"
+    ' update tbl_PatientPDTWLPairing
+        db.Execute "qdel_OldPatientPDTWLPairing", dbFailOnError
+        lngRowsAffected = db.RecordsAffected
+        Debug.Print "Deleted  " & lngRowsAffected & " from tbl_PatientPDTWLPairing"
+        db.Execute "qapp_NewPatientPDTWLPairing", dbFailOnError
+        lngRowsAffected = db.RecordsAffected
+        Debug.Print "Inserted  " & lngRowsAffected & " into tbl_PatientPDTWLPairing"
+
+                
+    End With
+    
+    Set db = Nothing
+
+End Sub
+
+Public Sub persistentTBLimport()
+
+' imports relevant tables from the access file directory
+Dim var As Variant
+Dim tName As String
+
+For Each var In Array( _
+                        "tbl_Clinician", _
+                        "tbl_ClinicianPD", _
+                        "tbl_Patient", _
+                        "tbl_TWListPD" _
+                        )
+    tName = var
+    Call importTable(tName)
+    Debug.Print "Imported table " & var
+Next var
+
+End Sub
+
+Public Sub persistentTBLexport()
+' exports relevant tables in the access file directory
+Dim var As Variant
+Dim tName As String
+
+For Each var In Array( _
+                        "tbl_Clinician", _
+                        "tbl_ClinicianPD", _
+                        "tbl_Patient", _
+                        "tbl_TWListPD" _
+                        )
+    tName = var
+    Call exportTable(tName)
+    'Debug.Print "Exported table " & var
+Next var
+
+End Sub
+
+
+
 Public Function GetCreateDate(Path As String) As Date
   'Path = "D:\src\access\caseload_data.csv"
   Dim fso As Scripting.FileSystemObject
@@ -366,33 +474,12 @@ Public Function recreateTWLTables()
 
 End Function
 
-Public Sub deleteAllFromSensitiveTables()
-'use WITH GREAT CARE
-' REMOVES ALL INFO FROM MOST TABLES
 
-Dim var As Variant
-Dim sql As String
-
-
-For Each var In Array("main", _
-                        "Name AutoCorrect Log", _
-                        "tbl_Clinician", "tbl_ClinicianPD", "tbl_Patient", _
-                        "tbl_PatientPDClinicianPairing", "tbl_PatientPDTWLPairing", _
-                        "tbl_PatientTWLPairing", "tbl_ConsultantCaseload")
-
-    '"ptsUnderPDUnderRKnotOtherClin", "ptsUnderPDRK",
-    '"tbl_TWListPD" (WL-Names), "cnameID", "cases-test-2_ImportErrors",
-   sql = "DELETE * FROM [" & var & "];"
-   CurrentDb.Execute sql, dbFailOnError
-   Debug.Print "Deleted from " & var
-Next var
-
-End Sub
 
 
 Public Function fReturnRecordset() As DAO.Recordset
 Dim MyDB As DAO.Database
-Dim  m MyRS As DAO.Recordset
+Dim MyRS As DAO.Recordset
 Dim strSQL As String
  
 'From the Employees Table in the Northwind Database
@@ -561,6 +648,8 @@ Public Function TableExists(TabName As String) As Boolean
     TableExists = (Err.Number = 0)
 
 End Function
+
+
 
 
 

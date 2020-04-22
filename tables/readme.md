@@ -18,13 +18,15 @@
 
 To clear the tables of any potentially sensitive information use routine `Public Sub deleteAllFromSensitiveTables()` in `bas_Main` module. You should run it from code editor. 
 
+* The only two tables that contain RAG and other report notes are: `tbl_Patient` and `tbl_TWListPD`. Other data that may need backing up is `tbl_Clinician` - especially the flags classifying the clinicans.
+
 ## Table: main
 
 **Transient:** This is where newly imported data end up in. At the start of import the table is deleted and created anew with specification as in the query `qddl_Create_main`. Initially all the imported data were in this table _as-is_. That however bloated the database too much. This table also gets indexes (one of the few places where SQL is written in VBA) after the data import has happened in the main routine `mainPrepRun()`.
 
 ### Temporary table: main_new_import 
 
-This is the table created in import specification `main_new_importing` - it exists for a very short while, but for that short while it initially exists alongside the `main` table from the previous data cycle. Then `main` is deleted and created anew, the necessary data selected into the new `main` and then `main_new_import` is deleted. This system decreased the database size from 20 MB to 3.6 MB.
+**Temporary:** This is the table created in import specification `main_new_importing` - it exists for a very short while, but for that short while it initially exists alongside the `main` table from the previous data cycle. Then `main` is deleted and created anew, the necessary data selected into the new `main` and then `main_new_import` is deleted. This system decreased the database size from 20 MB to 3.6 MB.
 
 ## Table: tbl_Clinician (and it's Flags)
 

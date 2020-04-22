@@ -5,11 +5,11 @@ INSERT INTO tbl_PatientPDClinicianPairing
               AllocatedHCPName 
             )
 SELECT DISTINCT main.ClientID, main.ClientName, main.AllocatedHCPName
-FROM tbl_Clinician INNER JOIN main 
+FROM main INNER JOIN tbl_Clinician 
       ON tbl_Clinician.AllocatedHCPName = main.AllocatedHCPName
 WHERE ((1)=1) 
-      AND (((main.AllocatedHCPName) NOT IN 
-            (SELECT DISTINCT AllocatedHCPName FROM tbl_PatientPDClinicianPairing)) 
+      AND (((main.AllocatedHCPName&main.ClientID) NOT IN 
+            (SELECT DISTINCT AllocatedHCPName&ClientID FROM tbl_PatientPDClinicianPairing)) 
       AND ((tbl_Clinician.isCons)=False) 
       AND ((tbl_Clinician.isRealPD)=True))
 ;
@@ -22,5 +22,7 @@ WHERE ((1)=1)
 name: qapp_NewPatientPDClinicianPairing
 
 Update executed from closing the clinican checkbox form.
+
+Note Access style concat function "&"
 
 */

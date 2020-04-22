@@ -1,7 +1,5 @@
 Option Compare Database
 
 Private Sub Form_Close()
-
-  listUpdate
-    
+    listConsUpdate
 End Sub

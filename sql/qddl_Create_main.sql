@@ -1,10 +1,29 @@
 CREATE TABLE main
   (
+    TeamName TEXT (80),
+    CareCoordinator (100),
+    CPALevel TEXT (45),
+    AllocatedHCPName TEXT (100),
     ClientID INT,
     ClientName TEXT (100),
-    AllocatedHCPName TEXT(100),
     NHSNumber TEXT (10),
-    TeamName TEXT (80)
+    DateOfBirth DATETIME,
+    Age INT,
+    Gender CHAR(7),
+    Practice_Name CHAR(180),
+    ReferralDateTime DATETIME,
+    AllocatedHCPStartDate DATETIME,
+    CarePlan_Date DATETIME,
+    RiskAssessmentDate DATETIME,
+    ProgNoteDate DATETIME,
+    MostRecentContact DATETIME,
+    ClusterAssessmentDate DATETIME,
+    Crisis_Relapse_and_Contingency_Plan_Date DATETIME,
+    CarePlan_Distributed_to_Client DATETIME,
+    ClusterName TEXT (120),
+    Diagnosis1Desc TEXT(120),
+    Diagnosis1 CHAR (12),
+    RAG_Rating TEXT (55)
   )
 ;
 

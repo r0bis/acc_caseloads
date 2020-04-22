@@ -1,17 +1,57 @@
 INSERT INTO main (
+                  TeamName,
+                  CareCoordinator,
+                  CPALevel,
+                  AllocatedHCPName,
                   ClientID,
                   ClientName,
-                  AllocatedHCPName,
                   NHSNumber,
-                  TeamName
+                  DateOfBirth,
+                  Age,
+                  Gender,
+                  Practice_Name,
+                  ReferralDateTime,
+                  AllocatedHCPStartDate,
+                  CarePlan_Date,
+                  RiskAssessmentDate,
+                  ProgNoteDate,
+                  MostRecentContact,
+                  ClusterAssessmentDate,
+                  Crisis_Relapse_and_Contingency_Plan_Date,
+                  CarePlan_Distributed_to_Client,
+                  ClusterName,
+                  Diagnosis1,
+                  Diagnosis1Desc,
+                  RAG_Rating
                   )
 SELECT DISTINCT 
-            ClientID,
-            ClientName, 
-            AllocatedHCPName, 
-            NHSNumber,
-            Team_Name AS TeamName 
+                  Team_Name AS TeamName,
+                  CareCoordinator,
+                  CPALevel,
+                  AllocatedHCPName,
+                  ClientID,
+                  ClientName,
+                  NHSNumber,
+                  DateOfBirth,
+                  Age,
+                  Gender,
+                  Practice_Name,
+                  ReferralDateTime,
+                  AllocatedHCPStartDate,
+                  CarePlan_Date,
+                  RiskAssessmentDate,
+                  ProgNoteDate,
+                  MostRecentContact,
+                  ClusterAssessmentDate,
+                  Crisis_Relapse_and_Contingency_Plan_Date,
+                  CarePlan_Distributed_to_Client,
+                  ClusterName,
+                  Diagnosis1,
+                  Diagnosis1Desc,
+                  RAG_Rating 
 FROM main_new_import
+      WHERE ClientID IS NOT NULL
+      AND ClientName IS NOT NULL
 ;
 
 -- When pasting in Access, paste only the query; pasting also comments will generate errors
@@ -29,6 +69,8 @@ we will need to alter main table definition and select more columns
 from the temporary table main_new_import
 
 main_new_import is quickly dropped to keep database size low
+
+ANOTHER VERSION:       WHERE ClientID & ClientName IS NOT NULL
 
 
 */

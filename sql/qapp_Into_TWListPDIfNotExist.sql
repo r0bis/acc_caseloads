@@ -1,5 +1,6 @@
 INSERT INTO tbl_TWListPD ( id, AllocatedHCPName )
-SELECT tbl_Clinician.id, tbl_Clinician.AllocatedHCPName
+SELECT  tbl_Clinician.id, 
+        tbl_Clinician.AllocatedHCPName
 FROM tbl_Clinician
 WHERE 1 = 1
   AND tbl_Clinician.isTWLPD = TRUE
