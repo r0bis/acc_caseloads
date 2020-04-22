@@ -47,7 +47,8 @@ Created using `fEnumControls()`
 
 Name: frm_Main
 
-| Control Name         | Control Type   |
+|     Control Name     |  Control Type  |
+|----------------------|----------------|
 | cmd_openReportClins  | Command Button |
 | cmd_btn_mkTables     | Command Button |
 | cmd_renTables        | Command Button |
@@ -78,7 +79,8 @@ Name: qparametric_ptsUnderPDClin
 
 Name: frm_clinCloadPD01
 
-| Control Name               | Control Type |
+|        Control Name        | Control Type |
+|----------------------------|--------------|
 | cbo_selPDClinName          | Combo box    |
 | AllocatedHCPName_Label     | Label        |
 | qparametric_ptsUnderPDClin | SubForm      |
