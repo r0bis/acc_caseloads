@@ -1,0 +1,3 @@
+This is the database file. It has all personal information removed. 
+
+To test it out you can download the file, the data (from `data` directory above), import the data using the interface button `Prepare Data` and play around. You will be asked to select some clinicians and you will need to set one of them as the consultant. It is relevant if in your team the conultant has all patients on their caseload, but individula clinicans - only their subset.
