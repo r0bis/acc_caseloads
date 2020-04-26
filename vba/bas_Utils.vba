@@ -10,7 +10,7 @@ Dim sql As String
 
 ' lets export the persistent table information first
 
-Call persistentTBLxport
+Call persistentTBLexport
 
 
 
@@ -178,4 +178,32 @@ For Each tdf In db.TableDefs
 Next tdf
 End Sub
 
+
+Public Sub ShowUserRosterMultipleUsers()
+    Dim cn As New ADODB.Connection
+    Dim rs As New ADODB.Recordset
+    Dim i, j As Long
+
+Set cn = CurrentProject.Connection
+
+' The user roster is exposed as a provider-specific schema rowset
+    ' in the Jet 4.0 OLE DB provider.  You have to use a GUID to
+    ' reference the schema, as provider-specific schemas are not
+    ' listed in ADO's type library for schema rowsets
+
+Set rs = cn.OpenSchema(adSchemaProviderSpecific, _
+    , "{947bb102-5d43-11d1-bdbf-00c04fb92675}")
+
+'Output the list of all users in the current database.
+
+Debug.Print rs.Fields(0).Name, "", rs.Fields(1).Name, _
+    "", rs.Fields(2).Name, rs.Fields(3).Name
+
+While Not rs.EOF
+        Debug.Print rs.Fields(0), rs.Fields(1), _
+        rs.Fields(2), rs.Fields(3)
+        rs.MoveNext
+    Wend
+
+End Sub
 

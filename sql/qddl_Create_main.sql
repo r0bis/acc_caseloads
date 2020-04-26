@@ -36,6 +36,9 @@ CREATE TABLE main
 name:   qddl_Create_main
 status: Hidden
 
+Note that the only change from original in column names is TeamName from Team_Name
+this is achieved in the SELECT query putting data into main table
+
 Prepares table for insertion of new data.
 main is temporary table - it gets dropped and recreated prior to new data import
 import definition is 'main_new_importing' - it is saved in the database

@@ -451,7 +451,6 @@ Public Function recreateTWLTables()
   lngRowsAffectedPtClinPairing = dbs.RecordsAffected
   dbs.Execute "qmak_Into_ConsultantCaseload", dbFailOnError
   lngRowsAffectedConsCload = dbs.RecordsAffected
-  dbs.Execute "qupd_ConsCaseload_isRealCons", dbFailOnError
   'MsgBox "Created"
 
   If (lngRowsAffectedPDTWL + lngRowsAffectedPtClinPairing + lngRowsAffectedTWL) <= 0 Then
@@ -459,6 +458,29 @@ Public Function recreateTWLTables()
           & vbCrLf & "Check your CSV file and try importing again!"
       Exit Function
   End If
+
+  ' Create Indexes for these temporary tables
+    Dim var As Variant
+    Dim tName As String
+
+    For Each var In Array( _
+                            "tbl_PatientPDTWLPairing", _
+                            "tbl_PatientTWLPairing", _
+                            "tbl_PatientPDClinicianPairing", _
+                            "tbl_ConsultantCaseload" _
+                            )
+        tName = var
+          
+     dbs.Execute "CREATE INDEX ClientIDIdx ON " & tName & " (ClientID);", dbFailOnError
+     dbs.Execute "CREATE INDEX ClientNameIdx ON " & tName & " (ClientName);", dbFailOnError
+     dbs.Execute "CREATE INDEX AllocHCPNameIdx ON " & tName & " (AllocatedHCPName);", dbFailOnError
+
+        'Debug.Print "Exported table " & var
+    Next var
+  
+  ' Finished creating indexes
+  ' Update the Consultant Caseload table from persistent tbl_Patient
+  dbs.Execute "qupd_ConsCaseload_isRealCons", dbFailOnError
 
   MsgBox "PD TW-List table had " & lngRowsAffectedPDTWL & ", All TW-List table had " & lngRowsAffectedTWL _
       & " Consultant Caseload table had " & lngRowsAffectedConsCload _
@@ -648,11 +670,4 @@ Public Function TableExists(TabName As String) As Boolean
     TableExists = (Err.Number = 0)
 
 End Function
-
-
-
-
-
-
-
 
