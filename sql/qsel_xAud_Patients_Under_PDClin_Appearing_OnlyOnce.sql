@@ -3,7 +3,7 @@ SELECT  main.ClientID,
         main.AllocatedHCPName
 FROM main INNER JOIN tbl_Clinician 
       ON main.AllocatedHCPName = tbl_Clinician.AllocatedHCPName
-  WHERE TBL_CLINICIAN.isRealPD = TRUE 
+  WHERE tbl_Clinician.isRealPD = TRUE 
   AND ClientID IN (SELECT ClientID FROM main
                     GROUP BY ClientID 
                     HAVING COUNT(*) = 1)
